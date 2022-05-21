@@ -23,6 +23,7 @@ export default ({post}) => {
 
             <div className="mt-5 w-100 d-flex justify-content-evenly align-items-center">
                 <Button className="w-25" type="submit">UPDATE</Button>
+                <Button className="w-25" type="submit">DELETE</Button>
                 <Button className="w-25" type="submit">HOME</Button>
             </div>
         </div>
