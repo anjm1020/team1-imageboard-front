@@ -14,6 +14,7 @@ function App() {
                 <Route path="/register" element={<Auth.Register/>}></Route>
                 <Route path="/list" element={<Post.List/>}/>
                 <Route path="/create" element={<Post.Create/>}></Route>
+                <Route path="/update" element={<Post.Update/>}></Route>
                 <Route path="/item" element={<Post.Item/>}></Route>
                 <Route path="*" element={<NotFound/>}></Route>
             </Routes>
