@@ -1,3 +1,4 @@
+import {Button} from "react-bootstrap";
 import {PostListLayout} from "../../layout";
 import PostCard from "../../component/post/PostCard";
 import * as Wrapper from "../../component/wrapper";
@@ -19,6 +20,7 @@ export default () => {
                 <h3>PostList</h3>
                 <UserInfo user={{name:"testUser"}}></UserInfo>
             </Wrapper.Header>
+            <Button className="mb-2">Create Post</Button>
             <Wrapper.ListBody>
                 {
                     list.map(l => {
