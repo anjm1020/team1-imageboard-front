@@ -1,6 +1,10 @@
 import {Form, Button} from "react-bootstrap";
+import {useNavigate} from "react-router";
 
 export default () => {
+
+    const navigate = useNavigate();
+
     return (
         <Form className="w-50 h-100 border rounded p-5 pt-4 border-primary">
             <Form.Group className="mb-3">
@@ -26,7 +30,13 @@ export default () => {
 
             <div className="w-100 d-flex justify-content-evenly align-items-center">
                 <Button className="w-25" type="submit">SAVE</Button>
-                <Button className="w-25" type="submit">CANCEL</Button>
+                <Button
+                    className="w-25"
+                    type="submit"
+                    onClick={()=>navigate('/')}
+                >
+                    CANCEL
+                </Button>
             </div>
         </Form>
     );

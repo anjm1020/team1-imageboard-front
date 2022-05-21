@@ -5,6 +5,7 @@ import * as Wrapper from "../../component/wrapper";
 import PageButton from "../../component/post/PageButton";
 import UserInfo from "../../component/user/UserInfo";
 import SiteName from "../../component/common/SiteName";
+import handleButtonClick from "../../util/handleButtonClick";
 
 export default () => {
 
@@ -20,7 +21,7 @@ export default () => {
                 <h3>PostList</h3>
                 <UserInfo user={{name:"testUser"}}></UserInfo>
             </Wrapper.Header>
-            <Button className="mb-2">Create Post</Button>
+            <Button className="mb-2" onClick={handleButtonClick("/create")}>Create Post</Button>
             <Wrapper.ListBody>
                 {
                     list.map(l => {

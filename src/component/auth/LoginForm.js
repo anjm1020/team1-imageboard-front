@@ -1,3 +1,4 @@
+import handleButtonClick from "../../util/handleButtonClick";
 import {Form,Button} from "react-bootstrap";
 
 export default () => {
@@ -15,6 +16,9 @@ export default () => {
                     <Form.Control type="password" placeholder="Password"/>
                 </Form.Group>
 
+                <Button className="w-100 mb-2" variant="primary" onClick={handleButtonClick("/register")} >
+                    Sign-in
+                </Button>
                 <Button className="w-100" variant="primary" type="submit">
                     Submit
                 </Button>
