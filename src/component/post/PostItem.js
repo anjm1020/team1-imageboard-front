@@ -1,7 +1,10 @@
 import {Button} from "react-bootstrap";
 import {useNavigate} from "react-router";
 
-export default ({post}) => {
+export default () => {
+
+    // useEffect로 받아오기 + url parameter
+    // value만 보여주기로 바꾸면 됨
 
     const navigate = useNavigate();
 

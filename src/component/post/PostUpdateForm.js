@@ -3,6 +3,8 @@ import {useNavigate} from "react-router";
 
 export default () => {
 
+    // create 참고해서 생성
+
     const navigate = useNavigate();
 
     return (
