@@ -98,7 +98,7 @@ function* logoutSaga(){
 export function* userSaga() {
     yield takeLatest(USER_REGISTER, registerSaga);
     yield takeLatest(USER_LOGIN, loginSaga);
-    yield takeLatest(USER_LOGIN_CHECK, loginCheckSaga);
+    yield takeLatest([USER_LOGIN_CHECK,USER_LOGIN_SUCCESS], loginCheckSaga);
     yield takeLatest(USER_LOGOUT, logoutSaga);
 }
 
@@ -108,7 +108,6 @@ const initState = {
     login: {
         email: "",
         password: "",
-        isSuccess: false,
         errMsg: null,
     },
     form: {
@@ -125,7 +124,6 @@ export default handleActions({
         login : {
             email: "",
             password: "",
-            isSuccess: true,
             errMsg: null,
         }
     }),

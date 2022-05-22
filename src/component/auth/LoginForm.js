@@ -10,13 +10,10 @@ export default () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    const {isSuccess,username,errMsg} = useSelector(({user}) => ({
-        isSuccess : user.login.isSuccess,
+    const {username,errMsg} = useSelector(({user}) => ({
         username: user.user,
         errMsg : user.login.errMsg
     }));
-
-    console.log(isSuccess);
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -28,12 +25,6 @@ export default () => {
             password,
         }));
     }
-
-    useEffect(() => {
-        if(isSuccess||username){
-            navigate("/");
-        }
-    }, [isSuccess,username]);
 
     return (
         <>
