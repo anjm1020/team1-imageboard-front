@@ -19,7 +19,7 @@ export default () => {
             <Wrapper.Header>
                 <SiteName></SiteName>
                 <h3>PostList</h3>
-                <UserInfo user={{name:"testUser"}}></UserInfo>
+                <UserInfo></UserInfo>
             </Wrapper.Header>
             <Button className="mb-2" onClick={handleButtonClick("/create")}>Create Post</Button>
             <Wrapper.ListBody>
