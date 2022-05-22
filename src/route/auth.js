@@ -14,10 +14,6 @@ export default () => {
     const username = useSelector(({user}) => user.user);
 
     useEffect(() => {
-        const token = localStorage.getItem("token");
-        if (token&&!username) {
-            dispatch(loginCheck(token));
-        }
         if (username) navigate("/");
     }, [navigate, username]);
 
