@@ -1,7 +1,7 @@
-export default () => {
+export default ({at}) => {
     return (
         <div>
-            Not Found
+            Not Found : {at}
         </div>
     );
 }

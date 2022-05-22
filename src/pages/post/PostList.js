@@ -21,7 +21,7 @@ export default () => {
                 <h3>PostList</h3>
                 <UserInfo></UserInfo>
             </Wrapper.Header>
-            <Button className="mb-2" onClick={handleButtonClick("/create")}>Create Post</Button>
+            <Button className="mb-2" onClick={handleButtonClick("/post/create")}>Create Post</Button>
             <Wrapper.ListBody>
                 {
                     list.map(l => {
