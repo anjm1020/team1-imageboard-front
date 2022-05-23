@@ -53,7 +53,7 @@ export default () => {
                     />
                 </Form.Group>
 
-                <a href="/register">Register</a>
+                <a href="/auth/register">Register</a>
                 <Button className="w-100" variant="primary" type="submit">
                     Submit
                 </Button>

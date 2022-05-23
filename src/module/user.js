@@ -1,7 +1,7 @@
 import {createAction, handleActions} from "redux-actions";
 import {put, call, takeLatest} from "redux-saga/effects";
 
-import {UserAPI} from "./api";
+import {User as API} from "./api";
 
 
 const USER_LOGIN = "USER/LOGIN";
@@ -30,7 +30,7 @@ export const initialize = createAction(USER_INIT);
 function* loginSaga({payload: form}) {
     try {
         // api call
-        const res = yield call(UserAPI.login, form);
+        const res = yield call(API.login, form);
         const {data, token} = {
             data: res.data,
             token: res.headers["authorization"]
@@ -52,14 +52,14 @@ function* registerSaga({payload: form}) {
 
     try {
         // api call
-        const {data} = yield call(UserAPI.register, form);
+        const {data} = yield call(API.register, form);
         yield put({
             type: USER_REGISTER_SUCCESS, payload: {
                 userId: data.result.id,
                 username: data.result.username,
             }
         });
-        yield put({type: USER_INIT});
+        yield put({type: USER_REGISTER_SUCCESS});
     } catch (err) {
         console.log(err);
         yield put({type: USER_REGISTER_FAILURE, payload: err});
@@ -67,12 +67,10 @@ function* registerSaga({payload: form}) {
 }
 
 function* loginCheckSaga() {
-    const token = window.localStorage.getItem("token");
-    console.log(token);
+    const token = localStorage.getItem("token");
     if (token) {
         try {
-            const res = yield call(UserAPI.getUser, token);
-            console.log(res);
+            const res = yield call(API.getUser, token);
             const {data} = res;
             yield put({
                 type: USER_LOGIN_CHECK_SUCCESS,
@@ -114,7 +112,8 @@ const initState = {
         email: "",
         username: "",
         password: ""
-    }
+    },
+    isRegisterSuccess:false,
 };
 
 
@@ -144,6 +143,7 @@ export default handleActions({
     }),
     [USER_REGISTER_SUCCESS]: (state, action) => ({
         ...state,
+        isRegisterSuccess:true,
     }),
     [USER_LOGOUT_SUCCESS]: (state, action) => ({
         ...state,

@@ -1,17 +1,21 @@
 import {Form, Button} from "react-bootstrap";
-import {useState} from "react";
-import {useDispatch} from "react-redux";
+import {useEffect, useState} from "react";
+import {useDispatch,useSelector} from "react-redux";
 import {register} from "../../module/user";
+import {useNavigate} from "react-router";
 
 export default () => {
 
+    const navigate = useNavigate();
     const dispatch = useDispatch();
 
     const [email, setEmail] = useState("");
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [passwordCf, setPasswordCf] = useState("");
+
     const [errMsg, setErrMsg] = useState(null);
+    const isRegisterSuccess = useSelector(({user}) => user.isRegisterSuccess);
 
     const checkPasswordValidation = () => {
         if (passwordCf !== password) {
@@ -35,6 +39,13 @@ export default () => {
             setPasswordCf("");
         }
     }
+
+    useEffect(()=>{
+        if (isRegisterSuccess) {
+            alert("회원가입이 완료되었습니다");
+            navigate("/");
+        }
+    },[isRegisterSuccess]);
 
     return (
         <>

@@ -10,12 +10,7 @@ import {loginCheck} from "../module/user";
 export default () => {
 
     const dispatch = useDispatch();
-    const navigate = useNavigate();
-    const username = useSelector(({user}) => user.user);
 
-    useEffect(() => {
-        if (username) navigate("/");
-    }, [navigate, username]);
 
     return (
         <Routes>
