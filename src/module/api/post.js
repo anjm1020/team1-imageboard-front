@@ -8,6 +8,15 @@ const getList = (payload) => axios({
     }
 });
 
+const getPost = (payload) => axios({
+    url: '/api/posts/'+payload.postId,
+    method: 'get',
+    headers: {
+        "Authorization":payload.token
+    }
+});
+
 export default {
-    getList
+    getList,
+    getPost
 }
