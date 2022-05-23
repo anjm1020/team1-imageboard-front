@@ -27,7 +27,7 @@ const getUser = (token) => axios({
     }
 });
 
-export const UserAPI = {
+export default  {
     register,
     login,
     getUser,

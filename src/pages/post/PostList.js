@@ -1,4 +1,7 @@
+import {useEffect} from "react";
 import {Button} from "react-bootstrap";
+import {useDispatch, useSelector} from "react-redux";
+
 import {PostListLayout} from "../../layout";
 import PostCard from "../../component/post/PostCard";
 import * as Wrapper from "../../component/wrapper";
@@ -7,12 +10,19 @@ import UserInfo from "../../component/user/UserInfo";
 import SiteName from "../../component/common/SiteName";
 import handleButtonClick from "../../util/handleButtonClick";
 
+import {loadList} from "../../module/postlist";
+
 export default () => {
 
-    const list = [];
-    for (let i = 0; i < 10; i++) {
-        list.push("");
-    }
+    const dispatch = useDispatch();
+    const {list,pageNumber} = useSelector(({postList})=>({
+        list : postList.list,
+        pageNumber : postList.pageNumber
+    }));
+
+    useEffect(() => {
+        dispatch(loadList(pageNumber));
+    }, [pageNumber]);
 
     return (
         <PostListLayout>
@@ -24,9 +34,9 @@ export default () => {
             <Button className="mb-2" onClick={handleButtonClick("/post/create")}>Create Post</Button>
             <Wrapper.ListBody>
                 {
-                    list.map(l => {
+                    list.map(post => {
                         return (
-                            <PostCard/>
+                            <PostCard key={post.id} post={post}/>
                         );
                     })
                 }
