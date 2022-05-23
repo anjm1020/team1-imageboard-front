@@ -5,9 +5,9 @@ export default () => {
     return (
         <>
             <Routes>
-                <Route path="create" element={<Post.Create/>}></Route>
-                <Route path="update" element={<Post.Update/>}></Route>
-                <Route path="item" element={<Post.Item/>}></Route>
+                <Route path="/create/:id" element={<Post.Create/>}></Route>
+                <Route path="/update/:id" element={<Post.Update/>}></Route>
+                <Route path="/read/:id" element={<Post.Item/>}></Route>
                 <Route path="" element={<Post.List/>}/>
             </Routes>
         </>
