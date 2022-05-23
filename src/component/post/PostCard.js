@@ -14,7 +14,7 @@ export default ({post}) => {
                 <Card.Text>
                     {content}
                 </Card.Text>
-                <Button variant="primary" onClick={() => navigate('/post/' + id)}>Read</Button>
+                <Button variant="primary" onClick={() => navigate('/post/read/' + id)}>Read</Button>
             </Card.Body>
         </Card>
     );
