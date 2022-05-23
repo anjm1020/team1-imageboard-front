@@ -10,15 +10,20 @@ import UserInfo from "../../component/user/UserInfo";
 import SiteName from "../../component/common/SiteName";
 import handleButtonClick from "../../util/handleButtonClick";
 
-import {loadList} from "../../module/postlist";
+import {loadLength, loadList} from "../../module/postlist";
 
 export default () => {
 
     const dispatch = useDispatch();
-    const {list,pageNumber} = useSelector(({postList})=>({
+    const {list,listLength,pageNumber} = useSelector(({postList})=>({
         list : postList.list,
+        listLength : postList.listLength,
         pageNumber : postList.pageNumber
     }));
+
+    useEffect(()=>{
+        dispatch(loadLength());
+    },[])
 
     useEffect(() => {
         dispatch(loadList(pageNumber));
@@ -42,7 +47,7 @@ export default () => {
                 }
             </Wrapper.ListBody>
             <Wrapper.Footer>
-                <PageButton></PageButton>
+                <PageButton listLength={listLength} pageNumber={pageNumber}></PageButton>
             </Wrapper.Footer>
         </PostListLayout>
     );

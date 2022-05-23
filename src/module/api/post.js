@@ -8,6 +8,14 @@ const getList = (payload) => axios({
     }
 });
 
+const getLength = (payload) => axios({
+    url: '/api/posts/length',
+    method: 'get',
+    headers: {
+        "Authorization":payload.token
+    }
+});
+
 const getPost = (payload) => axios({
     url: '/api/posts/'+payload.postId,
     method: 'get',
@@ -59,5 +67,6 @@ export default {
     getPost,
     createPost,
     updatePost,
-    deletePost
+    deletePost,
+    getLength
 }
