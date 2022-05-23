@@ -14,6 +14,7 @@ function* loadListSaga({payload:pageNumber}) {
     const token = localStorage.getItem("token");
     try {
         const {data} = yield call(API.getList, {token, pageNumber});
+        console.log(data);
         yield put({type: LOAD_LIST_SUCCESS, payload: data});
     } catch (err) {
         yield put({type: LOAD_LIST_FAILURE, payload: err});

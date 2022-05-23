@@ -1,12 +1,14 @@
 import {Form, Button} from "react-bootstrap";
 import {useNavigate} from "react-router";
-import {useDispatch,useSelector} from "react-redux";
-import {useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {useRef, useState} from "react";
 
-import {sendForm} from "../../module/post";
+import {createPost} from "../../module/post";
 
 
 export default () => {
+
+    const inputRef = useRef();
 
     const userId = useSelector(({user}) => user.userId);
     const dispatch = useDispatch();
@@ -14,16 +16,19 @@ export default () => {
 
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
-    const [imgFile, setImgFile] = useState(null);
+    const [imgFile, setImgFile] = useState(undefined);
 
     const onSubmit = e => {
         e.preventDefault();
-        dispatch(sendForm({
+        console.log(imgFile);
+        dispatch(createPost({
             userId,
             title,
             content,
-            imgFile
-        }))
+            imageName: imgFile.name,
+            file: imgFile,
+        }));
+        navigate("/");
     }
 
     return (
@@ -57,11 +62,8 @@ export default () => {
                     <Form.Control
                         type="file"
                         accept=".jpg,.gif,.png"
-                        value={imgFile}
-                        onChange={e=>{
-                            console.log(e.target.value);
-                            setImgFile(e.target.value)
-                        }}
+                        onChange={() => setImgFile(inputRef.current.files[0])}
+                        ref={inputRef}
                     />
                 </Form.Group>
                 <div className="w-100 d-flex justify-content-evenly align-items-center">

@@ -15,7 +15,7 @@ export default () => {
 
     const dispatch = useDispatch();
 
-    const post = useSelector(({post}) => post.read);
+    const post = useSelector(({post}) => post);
 
     const {id} = useParams();
 
@@ -33,7 +33,10 @@ export default () => {
                 <UserInfo></UserInfo>
             </Wrapper.Header>
             <Wrapper.ListBody>
-                <PostItem post={post}></PostItem>
+                <PostItem post={{
+                    ...post,
+                    id
+                }}></PostItem>
             </Wrapper.ListBody>
             <Wrapper.Footer/>
         </PostListLayout>
