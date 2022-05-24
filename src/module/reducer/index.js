@@ -3,6 +3,7 @@ import {all} from "redux-saga/effects";
 import post,{postSaga} from "./post";
 import postList, {postListSaga} from "./postlist";
 import user,{userSaga} from "./user";
+import exception from "./exception";
 
 export function* rootSaga() {
     yield all([userSaga(),postListSaga(),postSaga()]);
@@ -11,5 +12,6 @@ export function* rootSaga() {
 export default combineReducers({
     post,
     postList,
-    user
+    user,
+    exception
 });
