@@ -8,7 +8,7 @@ import PostItem from "../../component/post/PostItem";
 import SiteName from "../../component/common/SiteName";
 import UserInfo from "../../component/user/UserInfo";
 
-import {loadPost} from "../../module/post";
+import {loadPost} from "../../module/reducer/post";
 
 
 export default () => {
@@ -21,6 +21,8 @@ export default () => {
 
     useEffect(() => {
         if (id) {
+            // column 존재하는지 확인
+
             dispatch(loadPost(id));
         }
     },[id]);

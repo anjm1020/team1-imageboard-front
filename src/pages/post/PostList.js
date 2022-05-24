@@ -10,7 +10,7 @@ import UserInfo from "../../component/user/UserInfo";
 import SiteName from "../../component/common/SiteName";
 import handleButtonClick from "../../util/handleButtonClick";
 
-import {loadLength, loadList} from "../../module/postlist";
+import {loadLength, loadList} from "../../module/reducer/postlist";
 
 export default () => {
 

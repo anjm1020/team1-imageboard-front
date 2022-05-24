@@ -2,7 +2,7 @@ import {Button} from "react-bootstrap";
 import {useNavigate} from "react-router";
 import {useSelector} from "react-redux";
 import {useDispatch} from "react-redux";
-import {logout} from "../../module/user";
+import {logout} from "../../module/reducer/user";
 import {useEffect} from "react";
 
 export default () => {

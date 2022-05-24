@@ -2,6 +2,7 @@ import {createAction, handleActions} from "redux-actions";
 import {put, call, takeLatest} from "redux-saga/effects";
 
 import {Post as API} from "./api";
+import {STATUS_CODE, DOMAIN_TYPE} from "./exception";
 
 // post read
 const LOAD_POST = "POST/LOAD_POST";
@@ -30,10 +31,9 @@ function* loadPostSaga({payload: postId}) {
     const token = localStorage.getItem("token");
     try {
         const {data} = yield call(API.getPost, {token, postId});
-        console.log(data);
         yield put({type: LOAD_POST_SUCCESS, payload: data});
     } catch (err) {
-        yield put({type: LOAD_POST_FAILURE, payload: err});
+        // yield put({type: LOAD_POST_FAILURE, payload: exceptionHandler(STATUS_CODE) });
     }
 }
 

@@ -1,13 +1,12 @@
 import {Form,Button} from "react-bootstrap";
-import {useState,useEffect} from "react";
+import {useState} from "react";
 import {useNavigate} from "react-router";
 import {useSelector,useDispatch} from "react-redux";
 
-import {login} from "../../module/user";
+import {login} from "../../module/reducer/user";
 
 export default () => {
 
-    const navigate = useNavigate();
     const dispatch = useDispatch();
 
     const {username,errMsg} = useSelector(({user}) => ({

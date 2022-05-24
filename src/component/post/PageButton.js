@@ -1,7 +1,7 @@
 import {PageItem, Pagination} from "react-bootstrap";
 import {useDispatch} from "react-redux";
 import {useEffect, useState} from "react";
-import {setPageNumber} from "../../module/postlist";
+import {setPageNumber} from "../../module/reducer/postlist";
 
 export default ({listLength,pageNumber}) => {
 
@@ -18,8 +18,8 @@ export default ({listLength,pageNumber}) => {
 
     const makeList = (length) => {
 
-        if (length == 0) {
-            return [1];
+        if (length === 0) {
+            return [0];
         }
         let list = [];
 
@@ -35,7 +35,7 @@ export default ({listLength,pageNumber}) => {
                 {
                     list && (
                         list.map(i => (
-                            <PageItem active={i == pageNumber} key={i} onClick={() => onClick(i)}>
+                            <PageItem active={i === pageNumber} key={i} onClick={() => onClick(i)}>
                                 {i+1}
                             </PageItem>
                         ))

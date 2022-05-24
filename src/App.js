@@ -8,7 +8,7 @@ import './App.css';
 import {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from "react-router";
-import {loginCheck} from "./module/user";
+import {loginCheck} from "./module/reducer/user";
 
 function App() {
 

@@ -3,7 +3,7 @@ import {useNavigate} from "react-router";
 import {useDispatch, useSelector} from "react-redux";
 import {useRef, useState} from "react";
 
-import {createPost} from "../../module/post";
+import {createPost} from "../../module/reducer/post";
 
 
 export default () => {

@@ -2,7 +2,7 @@ import {Button} from "react-bootstrap";
 import {useNavigate} from "react-router";
 import {useSelector,useDispatch} from "react-redux";
 
-import {deletePost} from "../../module/post";
+import {deletePost} from "../../module/reducer/post";
 
 export default ({post}) => {
 

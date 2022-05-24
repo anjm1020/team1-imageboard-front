@@ -3,7 +3,7 @@ import {useState,useEffect} from "react";
 import {useNavigate} from "react-router";
 import {useDispatch} from "react-redux";
 
-import {updatePost} from "../../module/post";
+import {updatePost} from "../../module/reducer/post";
 
 export default ({post}) => {
 
@@ -13,14 +13,10 @@ export default ({post}) => {
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
 
-    useEffect(() => {
+    const init = () => {
         setTitle(post.title);
         setContent(post.content);
-    }, []);
-
-    useEffect(()=>{
-        console.log(content);
-    },[content])
+    }
 
     const onSubmit = e => {
         e.preventDefault();
@@ -33,6 +29,15 @@ export default ({post}) => {
         }));
         navigate("/");
     }
+
+
+    useEffect(() => {
+        init();
+    }, [init]);
+
+    useEffect(()=>{
+        console.log(content);
+    },[content])
 
     return (
         <Form onSubmit={e => onSubmit(e)} className="w-50 h-100 border rounded p-5 pt-4 border-primary">
