@@ -8,7 +8,7 @@ import * as Wrapper from "../../component/wrapper";
 import SiteName from "../../component/common/SiteName";
 import UserInfo from "../../component/user/UserInfo";
 import PostUpdateForm from "../../component/post/PostUpdateForm";
-import {loadPost} from "../../module/post";
+import {loadPost} from "../../module/reducer/post";
 
 export default () => {
 

@@ -3,7 +3,7 @@ import * as Post from "../pages/post";
 import {useNavigate} from "react-router";
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
-import {loginCheck} from "../module/user";
+import {loginCheck} from "../module/reducer/user";
 
 export default () => {
 

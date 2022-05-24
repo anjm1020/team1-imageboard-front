@@ -1,7 +1,7 @@
 import {Form, Button} from "react-bootstrap";
 import {useEffect, useState} from "react";
 import {useDispatch,useSelector} from "react-redux";
-import {register} from "../../module/user";
+import {register} from "../../module/reducer/user";
 import {useNavigate} from "react-router";
 
 export default () => {

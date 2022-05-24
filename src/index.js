@@ -12,7 +12,7 @@ import {createStore,applyMiddleware} from "redux";
 import {Provider} from "react-redux";
 import createSagaMiddleware from "redux-saga";
 import {composeWithDevTools} from "redux-devtools-extension"; // dev-tools
-import rootReducer,{rootSaga} from "./module";
+import rootReducer,{rootSaga} from "./module/reducer";
 
 const sagaMiddleware = createSagaMiddleware();
 
