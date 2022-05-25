@@ -3,7 +3,7 @@ import {all} from "redux-saga/effects";
 import post,{postSaga} from "./post";
 import postList, {postListSaga} from "./postlist";
 import user,{userSaga} from "./user";
-import exception from "./exception";
+import exception from "./error";
 
 export function* rootSaga() {
     yield all([userSaga(),postListSaga(),postSaga()]);

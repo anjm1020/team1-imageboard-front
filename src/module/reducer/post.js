@@ -2,7 +2,7 @@ import {createAction, handleActions} from "redux-actions";
 import {put, call, takeLatest} from "redux-saga/effects";
 
 import {Post as API} from "../api";
-import {EMIT_ERROR} from "./exception";
+import {EMIT_ERROR} from "./error";
 import exceptionBuilder from "../lib/exception/exceptionBuilder";
 // post read
 const LOAD_POST = "POST/LOAD_POST";
