@@ -1,7 +1,7 @@
 import {createAction, handleActions} from "redux-actions";
 import {put, call, takeLatest} from "redux-saga/effects";
 
-import {User as API} from "./api";
+import {User as API} from "../api";
 
 
 const USER_LOGIN = "USER/LOGIN";
@@ -22,10 +22,11 @@ const USER_LOGOUT_SUCCESS = "USER/LOGOUT_SUCCESS";
 const USER_INIT = "USER/INIT";
 
 export const login = createAction(USER_LOGIN, user => user); // saga
+export const loginFail = createAction(USER_LOGIN_FAILURE, errMsg => errMsg);
 export const loginCheck = createAction(USER_LOGIN_CHECK);
 export const register = createAction(USER_REGISTER, user => user); // saga
+export const registerFail = createAction(USER_REGISTER_FAILURE);
 export const logout = createAction(USER_LOGOUT);
-export const initialize = createAction(USER_INIT);
 
 function* loginSaga({payload: form}) {
     try {
@@ -44,7 +45,7 @@ function* loginSaga({payload: form}) {
             }
         });
     } catch (err) {
-        yield put({type: USER_LOGIN_FAILURE, payload: err})
+        yield put({type: USER_LOGIN_FAILURE, payload: "Login Failed"}) // response 받아서 변경
     }
 }
 
@@ -61,8 +62,7 @@ function* registerSaga({payload: form}) {
         });
         yield put({type: USER_REGISTER_SUCCESS});
     } catch (err) {
-        console.log(err);
-        yield put({type: USER_REGISTER_FAILURE, payload: err});
+        yield put({type: USER_REGISTER_FAILURE, payload: "Register Failed"});
     }
 }
 
@@ -88,15 +88,15 @@ function* loginCheckSaga() {
     }
 }
 
-function* logoutSaga(){
-    yield window.localStorage.removeItem("token");
+function* logoutSaga() {
+    yield localStorage.removeItem("token");
     yield put({type: USER_LOGOUT_SUCCESS});
 }
 
 export function* userSaga() {
     yield takeLatest(USER_REGISTER, registerSaga);
     yield takeLatest(USER_LOGIN, loginSaga);
-    yield takeLatest([USER_LOGIN_CHECK,USER_LOGIN_SUCCESS], loginCheckSaga);
+    yield takeLatest([USER_LOGIN_CHECK, USER_LOGIN_SUCCESS], loginCheckSaga);
     yield takeLatest(USER_LOGOUT, logoutSaga);
 }
 
@@ -111,50 +111,59 @@ const initState = {
     form: {
         email: "",
         username: "",
-        password: ""
+        password: "",
+        errMsg: null,
     },
-    isRegisterSuccess:false,
+    isRegisterSuccess: false,
 };
 
 
 export default handleActions({
-    [USER_LOGIN_SUCCESS]: (state, {payload}) => ({
-        ...state,
-        login : {
-            email: "",
-            password: "",
-            errMsg: null,
-        }
-    }),
-    [USER_LOGIN_FAILURE]: (state, action) => ({
-        ...state,
-        login : {
-            ...state.login,
-            errMsg: "Login Failed",
-        }
-    }),
-    [USER_LOGIN_CHECK_SUCCESS]: (state, {payload}) => ({
-        ...state,
-        user: payload.username,
-        userId: payload.userId,
-    }),
-    [USER_LOGIN_CHECK_FAILURE]: (state, {payload}) => ({
-        ...state,
-    }),
-    [USER_REGISTER_SUCCESS]: (state, action) => ({
-        ...state,
-        isRegisterSuccess:true,
-    }),
-    [USER_LOGOUT_SUCCESS]: (state, action) => ({
-        ...state,
-        user: null,
-        userId: null
-    })
-    ,
-    [USER_INIT]: (state, action) => ({
-        ...state,
-        login: initState.login,
-        form: initState.form,
-    })
-}, initState);
+        [USER_LOGIN_SUCCESS]: (state, {payload}) => ({
+            ...state,
+            login: initState.login,
+        }),
+        [USER_LOGIN_FAILURE]: (state, {payload: errMsg}) => ({
+            ...state,
+            login: {
+                ...state.login,
+                errMsg,
+            }
+        }),
+        [USER_LOGIN_CHECK_SUCCESS]: (state, {payload}) => ({
+            ...state,
+            user: payload.username,
+            userId: payload.userId,
+        }),
+        [USER_LOGIN_CHECK_FAILURE]: (state, {payload}) => ({
+            ...state,
+        }),
+        [USER_REGISTER_SUCCESS]: (state, action) => ({
+            ...state,
+            isRegisterSuccess: true,
+        }),
+        [USER_REGISTER_FAILURE]: (state, {payload: errMsg}) => ({
+            ...state,
+            form: {
+                ...state.form,
+                errMsg
+            }
+        }),
+        [USER_LOGOUT_SUCCESS]:
+            (state, action) => ({
+                ...state,
+                user: null,
+                userId: null
+            })
+        ,
+        [USER_INIT]:
+            (state, action) => ({
+                ...state,
+                login: initState.login,
+                form: initState.form,
+            })
+    },
+    initState
+)
+;
 

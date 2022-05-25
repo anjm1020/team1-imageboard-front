@@ -1,28 +1,46 @@
 import {Form,Button} from "react-bootstrap";
 import {useState} from "react";
-import {useNavigate} from "react-router";
 import {useSelector,useDispatch} from "react-redux";
 
-import {login} from "../../module/reducer/user";
+import {login, loginFail} from "../../module/reducer/user";
 
 export default () => {
 
     const dispatch = useDispatch();
 
-    const {username,errMsg} = useSelector(({user}) => ({
-        username: user.user,
+    const {errMsg} = useSelector(({user}) => ({
         errMsg : user.login.errMsg
     }));
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
+    const makeErrorMessage = (msg) => {
+        return "Required : " + msg;
+    }
+
+    const checkFormValidation = (email,password) => {
+        if (email === "") {
+            throw makeErrorMessage("email");
+        }
+
+        if (password === "") {
+            throw makeErrorMessage("password");
+        }
+    }
+
+
     const onSubmit = e => {
         e.preventDefault();
-        dispatch(login({
-            email,
-            password,
-        }));
+        try {
+            checkFormValidation(email, password);
+            dispatch(login({
+                email,
+                password,
+            }));
+        } catch (errMsg) {
+            dispatch(loginFail(errMsg));
+        }
     }
 
     return (

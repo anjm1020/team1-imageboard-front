@@ -18,26 +18,46 @@ export default ({post}) => {
         setContent(post.content);
     }
 
+    const checkFormValidation = () => {
+        if (title === "") {
+            throw makeErrorMessage("title");
+        }
+        if (content === "") {
+            throw makeErrorMessage("content");
+        }
+        if (title.length > 20) {
+            throw "title's length must be less than 20";
+        }
+        if (content.length > 255) {
+            throw "title's length must be less than 255";
+        }
+    }
+
+    const makeErrorMessage = (msg) => {
+        return "Required : " + msg;
+    }
+
     const onSubmit = e => {
         e.preventDefault();
-        dispatch(updatePost({
-            id:post.id,
-            userId:post.userId,
-            title,
-            content,
-            imgId : post.imgId
-        }));
-        navigate("/");
+        try {
+            checkFormValidation();
+            dispatch(updatePost({
+                id: post.id,
+                userId: post.userId,
+                title,
+                content,
+                imgId: post.imgId
+            }));
+            navigate("/");
+        } catch (errMsg) {
+            alert(errMsg);
+        }
     }
 
 
     useEffect(() => {
         init();
-    }, [init]);
-
-    useEffect(()=>{
-        console.log(content);
-    },[content])
+    }, []);
 
     return (
         <Form onSubmit={e => onSubmit(e)} className="w-50 h-100 border rounded p-5 pt-4 border-primary">

@@ -1,8 +1,9 @@
 import {Form, Button} from "react-bootstrap";
 import {useEffect, useState} from "react";
-import {useDispatch,useSelector} from "react-redux";
-import {register} from "../../module/reducer/user";
+import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from "react-router";
+
+import {register,registerFail} from "../../module/reducer/user";
 
 export default () => {
 
@@ -14,42 +15,55 @@ export default () => {
     const [password, setPassword] = useState("");
     const [passwordCf, setPasswordCf] = useState("");
 
-    const [errMsg, setErrMsg] = useState(null);
-    const isRegisterSuccess = useSelector(({user}) => user.isRegisterSuccess);
-
-    const checkPasswordValidation = () => {
-        if (passwordCf !== password) {
-            setErrMsg("Passwords do not match");
-            return false;
+    const {isRegisterSuccess, errMsg} = useSelector(({user}) => ({
+            isRegisterSuccess: user.isRegisterSuccess,
+            errMsg: user.form.errMsg,
         }
-        return true;
+    ));
+
+    const makeErrorMessage = (msg) => {
+        return "Required : " + msg;
+    }
+
+    const checkFormValidation = () => {
+        if (email === "") {
+            throw makeErrorMessage("email");
+        }
+        if (username === "") {
+            throw makeErrorMessage("username");
+        }
+        if (password === "") {
+            throw makeErrorMessage("password");
+        }
+        if(password!==passwordCf) {
+            throw makeErrorMessage("check password(Not Equal)");
+        }
     }
 
     const onSubmit = e => {
-        console.log("call signup");
         e.preventDefault();
-        if(checkPasswordValidation()){
+        try {
+            checkFormValidation();
             dispatch(register({
                 email,
                 username,
                 password
             }));
-        } else {
-            setPassword("");
-            setPasswordCf("");
+        } catch (errMsg) {
+            dispatch(registerFail(errMsg));
         }
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         if (isRegisterSuccess) {
             alert("회원가입이 완료되었습니다");
             navigate("/");
         }
-    },[isRegisterSuccess]);
+    }, [isRegisterSuccess]);
 
     return (
         <>
-            <Form onSubmit={e=>onSubmit(e)} className="w-75 border rounded p-5 pt-4 border-primary">
+            <Form onSubmit={e => onSubmit(e)} className="w-75 border rounded p-5 pt-4 border-primary">
                 <h2 className="mb-3">Register</h2>
                 {
                     errMsg && <span className="text-danger fw-bolder">{errMsg}</span>
