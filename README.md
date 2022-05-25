@@ -1,3 +1,7 @@
 ## ImageBoard
 
-image board front
+### Build
+```
+# on root directory
+$ npm run build
+```
