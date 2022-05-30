@@ -1,8 +1,7 @@
 import {createAction, handleActions} from "redux-actions";
 import {put, call, takeLatest} from "redux-saga/effects";
 
-import {Post as API} from "./api";
-import data from "bootstrap/js/src/dom/data";
+import {Post as API} from "../api";
 
 const LOAD_LIST = "POST_LIST/LOAD";
 const LOAD_LIST_SUCCESS = "POST_LIST/LOAD_SUCCESS";
