@@ -10,15 +10,18 @@ const LOAD_POST_SUCCESS = "POST/LOAD_POST_SUCCESS";
 
 // post create, update
 const CREATE_POST = "POST/CREATE_POST";
-
 const UPDATE_POST = "POST/UPDATE_POST";
-
 const DELETE_POST = "POST/DELETE_POST";
+
+// image download
+const IMAGE_DOWNLOAD = "POST/IMAGE_DOWNLOAD";
+const IMAGE_DOWNLOAD_SUCCESS = "POST/IMAGE_DOWNLOAD_SUCCESS";
 
 export const loadPost = createAction(LOAD_POST, postId => postId); //saga
 export const createPost = createAction(CREATE_POST, post => post); //saga
 export const updatePost = createAction(UPDATE_POST, post => post);
 export const deletePost = createAction(DELETE_POST, postId => postId);
+export const imageDownload = createAction(IMAGE_DOWNLOAD, imageId => imageId);
 
 function* loadPostSaga({payload: postId}) {
     const token = localStorage.getItem("token");
@@ -60,12 +63,24 @@ function* deletePostSaga({payload: postId}) {
     }
 }
 
+function* imageDownloadSaga({payload: imageId}) {
+    const token = localStorage.getItem("token");
+    try {
+        const data = yield call(API.downloadImage, {token, imageId});
+        console.log("downloadImage/data : " + data);
+        yield put({type : IMAGE_DOWNLOAD_SUCCESS, payload: data});
+    } catch (err) {
+
+    }
+}
+
 
 export function* postSaga() {
     yield takeLatest(LOAD_POST, loadPostSaga);
     yield takeLatest(CREATE_POST, createPostSaga);
     yield takeLatest(UPDATE_POST, updatePostSaga);
     yield takeLatest(DELETE_POST, deletePostSaga);
+    yield takeLatest(IMAGE_DOWNLOAD, imageDownloadSaga);
 }
 
 const initState = {
@@ -83,5 +98,8 @@ export default handleActions({
         imgId: payload.imgId,
         content: payload.content,
         title: payload.title
+    }),
+    [IMAGE_DOWNLOAD_SUCCESS]: (state) => ({
+        ...state,
     }),
 }, initState);

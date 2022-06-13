@@ -3,6 +3,7 @@ import {useNavigate} from "react-router";
 import {useSelector,useDispatch} from "react-redux";
 
 import {deletePost} from "../../module/reducer/post";
+import ImageDownloadButton from "./ImageDownloadButton";
 
 export default ({post}) => {
 
@@ -21,8 +22,7 @@ export default ({post}) => {
         <div
             className="w-75 h-100 p-3 d-flex flex-column justify-content-start align-items-center">
             <h3 className="mb-3">{title}</h3>
-            {/*<span className="mb-3">author : {"[" + userId + "]"}</span>*/}
-            <img className="w-50 h-50 mb-3" src={"http://localhost:8080/api/images/" + imgId}/>
+            <img className="w-50 h-50 mb-3" style={{maxHeight:'500px'}} src={"http://localhost:8080/api/images/" + imgId}/>
             <pre>
                 {content}
             </pre>
@@ -32,13 +32,13 @@ export default ({post}) => {
                     userId == client && (
                         <>
                             <Button
-                                className="w-25"
+                                className="w-auto"
                                 onClick={() => navigate('/post/update/' + id)}
                             >
                                 UPDATE
                             </Button>
                             <Button
-                                className="w-25"
+                                className="w-auto"
                                 onClick={() => onDelete()}
                             >
                                 DELETE
@@ -46,8 +46,9 @@ export default ({post}) => {
                         </>
                     )
                 }
+                <ImageDownloadButton imageId={imgId}/>
                 <Button
-                    className="w-25"
+                    className="w-auto"
                     type="submit"
                     onClick={() => navigate('/')}
                 >
