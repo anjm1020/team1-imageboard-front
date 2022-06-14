@@ -1,7 +1,7 @@
 import {Form, Button} from "react-bootstrap";
 import {useState,useEffect} from "react";
 import {useNavigate} from "react-router";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 
 import {updatePost} from "../../module/reducer/post";
 
@@ -12,6 +12,8 @@ export default ({post}) => {
 
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
+
+    // const userId = useSelector(({user}) => user.userId);
 
     const init = () => {
         setTitle(post.title);
@@ -42,13 +44,12 @@ export default ({post}) => {
         try {
             checkFormValidation();
             dispatch(updatePost({
-                id: post.id,
-                userId: post.userId,
-                title,
+                ...post,
                 content,
-                imgId: post.imgId
+                title
             }));
             navigate("/");
+            console.log({...post, content, title});
         } catch (errMsg) {
             alert(errMsg);
         }
