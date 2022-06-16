@@ -44,6 +44,7 @@ const updatePost = (payload) => axios({
     url: '/api/posts/'+payload.post.id,
     method: 'PUT',
     data: {
+        id : payload.post.id,
         userId : payload.post.userId,
         title : payload.post.title,
         content : payload.post.content,
