@@ -26,9 +26,9 @@ jobs:
       - name: SSH Remote Commands
         uses: appleboy/ssh-action@v0.1.4
         with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.USERNAME }}
-          key: ${{ secrets.PEM_KEY }}
+          host: ${{ secrets.RELEASE_SSH_HOST }}
+          username: ${{ secrets.RELEASE_USERNAME }}
+          key: ${{ secrets.RELEASE_PEM_KEY }}
           port: ${{ secrets.SSH_PORT }}
           timeout: 40s
           script: |
