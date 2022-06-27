@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const register = (form) => axios({
-    url: 'http://133.186.151.164:8080/imageBoard/api/members/signup',
+    url: '/api/members/signup',
     method: 'post',
     data: {
         email: form.email,
