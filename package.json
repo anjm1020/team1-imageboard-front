@@ -47,5 +47,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "proxy": "http://133.186.218.26:8080/imageBoard"
 }
