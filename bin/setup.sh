@@ -20,9 +20,10 @@ git pull origin develop
 # set nginx configuration
 sudo rm /etc/nginx/sites-available/default
 sudo rm /etc/nginx/sites-enabled/default
-cd /etc/nginx/sites-available/
-
-# mv config file to directory
+cd
+cd team1-imageboard-front/bin/conf;
+sudo sed -i 's@SERVER_URL@'"$1"'@g' imageboard.conf
+sudo cp imageboard.conf ~/../../etc/nginx/sites-available/default/imageboard.conf
 
 # add symbolic link
 sudo ln -s /etc/nginx/sites-available/imageboard.conf /etc/nginx/sites-enabled/imageboard.conf
