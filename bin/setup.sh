@@ -1,0 +1,39 @@
+#!/bin/bash
+# setup.sh
+# @ param = api_server_url
+
+# apt update, install dependency
+sudo apt-get update
+sudo apt-get install nginx git npm -y
+
+# nvm install
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh | bash
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+nvm install v16
+
+# git clone
+git clone https://github.com/BiBimBapXOpenStack/team1-imageboard-front.git
+git pull origin develop
+
+# set nginx configuration
+sudo rm /etc/nginx/sites-available/default
+sudo rm /etc/nginx/sites-enabled/default
+cd /etc/nginx/sites-available/
+
+# mv config file to directory
+
+# add symbolic link
+sudo ln -s /etc/nginx/sites-available/imageboard.conf /etc/nginx/sites-enabled/imageboard.conf
+
+# make .env file
+cd
+cd team1-imageboard-front
+sudo echo REACT_APP_HTTP_URL=$1 >> .env
+
+# build
+npm install
+npm run build
+
+sudo systemctl restart nginx
