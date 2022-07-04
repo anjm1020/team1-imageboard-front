@@ -20,19 +20,20 @@ git config --global user.name jaemin
 git clone https://github.com/BiBimBapXOpenStack/team1-imageboard-front.git
 cd team1-imageboard-front
 git fetch --all
-git restore --hard origin/develop
+git reset --hard origin/develop
 git pull origin develop
 
 # set nginx configuration
 cd
-sudo rm /etc/nginx/sites-available/default
-sudo rm /etc/nginx/sites-enabled/default
+sudo rm ~/../../etc/nginx/sites-available/default
+sudo rm ~/../../etc/nginx/sites-enabled/default
 cd
 cd team1-imageboard-front/bin/conf;
-sudo sed -i 's@SERVER_URL@'"$1"'@g' imageboard.conf
-sudo cp imageboard.conf ~/../../etc/nginx/sites-available/default/imageboard.conf
+sudo sed -i 's@SERVER_URL@'"$1"'@g' imageboard.conf 
+sudo cp imageboard.conf ~/../../etc/nginx/sites-available/imageboard.conf
 
 # add symbolic link
+cd
 sudo ln -s /etc/nginx/sites-available/imageboard.conf /etc/nginx/sites-enabled/imageboard.conf
 
 # make .env file
