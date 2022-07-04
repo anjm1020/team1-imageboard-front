@@ -24,23 +24,7 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
-
-      - name: initialize
-        if: ${{ contains(github.event.head_commit.message, '[INIT]') }}
-        uses: appleboy/ssh-action@v0.1.4
-        with:
-          host: ${{ secrets.DEV_SSH_HOST }}
-          username: ${{ secrets.DEV_USERNAME }}
-          key: ${{ secrets.DEV_PEM_KEY }}
-          port: ${{ secrets.SSH_PORT }}
-          script: |
-            whoami
-            sudo apt-get update
-            sudo apt-get install git -y
-            git clone https://github.com/BiBimBapXOpenStack/team1-imageboard-front.git
-            cd team1-imageboard-front/bin
-            ./setup.sh ${{ secrets.SERVER_URL }} 
-            
+        
       - name: SSH Remote Commands
         if: ${{ !contains(github.event.head_commit.message, '[INIT]') }}
         uses: appleboy/ssh-action@v0.1.4
