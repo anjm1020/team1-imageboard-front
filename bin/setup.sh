@@ -67,8 +67,12 @@ echo ===========================================
 echo 6. Build
 echo ===========================================
 cd ~/team1-imageboard-front
-npm install
-npm run build
+while [[ !( -d build/) || !( -f build/index.html) ]]
+do
+  [ -d build ] && rm -rf build
+  npm install
+  npm run build
+done
 echo *** team1-imageboard-front/build/ ***
 cd build/
 ls
