@@ -41,11 +41,13 @@ echo ===========================================
 [ -f ~/../../etc/nginx/sites-available/default ] && sudo rm ~/../../etc/nginx/sites-available/default
 [ -f ~/../../etc/nginx/sites-enabled/default ] && sudo rm ~/../../etc/nginx/sites-enabled/default
 cd ~/team1-imageboard-front/bin/conf;
-sudo sed -i 's@SERVER_URL@'"$1"'@g' imageboard.conf 
+sudo sed -i 's@SERVER_URL@'"$1"'@g' imageboard.conf
+[ -f ~/../../etc/nginx/sites-available/imageboard.conf ] && sudo rm ~/../../etc/nginx/sites-available/imageboard.conf
 sudo cp imageboard.conf ~/../../etc/nginx/sites-available/imageboard.conf
 echo *** sites-available/imageboard.conf ***
 sudo cat ~/../../etc/nginx/sites-available/imageboard.conf
 cd ~
+[ -f ~/../../etc/nginx/sites-enabled/imageboard.conf ] && sudo rm ~/../../etc/nginx/sites-enabled/imageboard.conf
 sudo ln -s /etc/nginx/sites-available/imageboard.conf /etc/nginx/sites-enabled/imageboard.conf
 echo *** sites-enabled/imageboard.conf ***
 sudo cat ~/../../etc/nginx/sites-enabled/imageboard.conf
