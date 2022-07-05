@@ -2,6 +2,10 @@
 # setup.sh
 # @ param = api_server_url
 
+echo "==========================================="
+echo "0. Stop nginx"
+echo "==========================================="
+sudo systemctl stop nginx
 
 echo "==========================================="
 echo "1. Install Dependency"
