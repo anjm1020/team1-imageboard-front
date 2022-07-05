@@ -46,12 +46,12 @@ cd ~/team1-imageboard-front/bin/conf;
 sudo sed -i 's@SERVER_URL@'"$1"'@g' imageboard.conf
 [ -f ~/../../etc/nginx/sites-available/imageboard.conf ] && sudo rm ~/../../etc/nginx/sites-available/imageboard.conf
 sudo cp imageboard.conf ~/../../etc/nginx/sites-available/imageboard.conf
-echo *** sites-available/imageboard.conf ***
+echo "*** sites-available/imageboard.conf ***"
 sudo cat ~/../../etc/nginx/sites-available/imageboard.conf
 cd ~
 [ -f ~/../../etc/nginx/sites-enabled/imageboard.conf ] && sudo rm ~/../../etc/nginx/sites-enabled/imageboard.conf
 sudo ln -s /etc/nginx/sites-available/imageboard.conf /etc/nginx/sites-enabled/imageboard.conf
-echo *** sites-enabled/imageboard.conf ***
+echo "*** sites-enabled/imageboard.conf ***"
 sudo cat ~/../../etc/nginx/sites-enabled/imageboard.conf
 
 
@@ -61,7 +61,7 @@ echo ===========================================
 cd ~/team1-imageboard-front/
 [ -f .env ] && rm .env
 sudo echo REACT_APP_HTTP_URL=$1 >> .env
-echo *** team1-imageboard-front/.env ***
+echo "*** team1-imageboard-front/.env ***"
 sudo cat .env
 
 
@@ -70,13 +70,13 @@ echo 6. Build
 echo ===========================================
 cd ~/team1-imageboard-front
 [ -d build ] && rm -rf build
-while [![ -f build/index.html]]
+while [ ! -f build/index.html ]
 do
   [ -d build ] && rm -rf build
   npm install
   npm run build
 done
-echo *** team1-imageboard-front/build/ ***
+echo "*** team1-imageboard-front/build/ ***"
 cd build/
 ls
 
