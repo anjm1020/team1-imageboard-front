@@ -101,4 +101,4 @@ ls
 echo "==========================================="
 echo "7. Nginx restart"
 echo "==========================================="
-sudo systemctl restart nginx
+sudo systemctl start nginx
