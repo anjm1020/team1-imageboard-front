@@ -84,7 +84,7 @@ do
   }
   [ -f build/index.html ] && break
   [ -d build ] && rm -rf build
-  [ -d node_modules] && rm -rf node_modules
+  [ -d node_modules ] && rm -rf node_modules
   npm install
   npm run build
   ((try_build++))
