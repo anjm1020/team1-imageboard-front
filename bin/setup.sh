@@ -79,20 +79,21 @@ echo "6. Build"
 echo "==========================================="
 cd ~/team1-imageboard-front
 [ -d build ] && rm -rf build
-try_build=0
-while :
-do
-  [ $try_build -eq 5 ] && {
-    echo "### Error : Build Error ###"
-    exit 1
-  }
-  [ -f build/index.html ] && break
-  [ -d build ] && rm -rf build
-  [ -d node_modules ] && rm -rf node_modules
-  npm install
-  npm run build
-  ((try_build++))
-done
+# try_build=0
+# while :
+# do
+#   [ $try_build -eq 5 ] && {
+#     echo "### Error : Build Error ###"
+#     exit 1
+#   }
+#   [ -f build/index.html ] && break
+#   [ -d build ] && rm -rf build
+#   [ -d node_modules ] && rm -rf node_modules
+#   npm install
+#   npm run build
+#   ((try_build++))
+# done
+npm run build
 echo "*** team1-imageboard-front/build/ ***"
 cd build/
 ls
