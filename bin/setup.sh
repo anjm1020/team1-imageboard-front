@@ -70,12 +70,18 @@ echo 6. Build
 echo ===========================================
 cd ~/team1-imageboard-front
 [ -d build ] && rm -rf build
+try_build=0
 while :
 do
+  [ $try_build -eq 5 ] && {
+    echo "### Error : Build Error ###"
+    exit 1
+  }
   [ -f build/index.html ] && break
   [ -d build ] && rm -rf build
   npm install
   npm run build
+  ((try_build++))
 done
 echo "*** team1-imageboard-front/build/ ***"
 cd build/
