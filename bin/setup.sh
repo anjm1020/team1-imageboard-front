@@ -18,7 +18,7 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 nvm install v16
-echo === Node Version ===
+echo ***  Node Version ***
 node --version
 
 
@@ -43,11 +43,11 @@ echo ===========================================
 cd ~/team1-imageboard-front/bin/conf;
 sudo sed -i 's@SERVER_URL@'"$1"'@g' imageboard.conf 
 sudo cp imageboard.conf ~/../../etc/nginx/sites-available/imageboard.conf
-echo === sites-available/imageboard.conf ===
+echo *** sites-available/imageboard.conf ***
 sudo cat ~/../../etc/nginx/sites-available/imageboard.conf
 cd ~
 sudo ln -s /etc/nginx/sites-available/imageboard.conf /etc/nginx/sites-enabled/imageboard.conf
-echo === sites-enabled/imageboard.conf ===
+echo *** sites-enabled/imageboard.conf ***
 sudo cat ~/../../etc/nginx/sites-enabled/imageboard.conf
 
 
@@ -56,7 +56,7 @@ echo 5. React env configuration
 echo ===========================================
 cd ~/team1-imageboard-front/
 sudo echo REACT_APP_HTTP_URL=$1 >> .env
-echo === team1-imageboard-front/.env ===
+echo *** team1-imageboard-front/.env ***
 sudo cat .env
 
 
@@ -66,7 +66,7 @@ echo ===========================================
 cd ~/team1-imageboard-front
 npm install
 npm run build
-echo === team1-imageboard-front/build/ ===
+echo *** team1-imageboard-front/build/ ***
 cd build/
 ls
 
