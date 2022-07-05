@@ -33,7 +33,7 @@ export default () => {
         <PostListLayout>
             <Wrapper.Header>
                 <SiteName></SiteName>
-                <h3>PostList CI TEST</h3>
+                <h3>PostList</h3>
                 <UserInfo></UserInfo>
             </Wrapper.Header>
             <Button className="mb-2" onClick={handleButtonClick("/post/create")}>Create Post</Button>
