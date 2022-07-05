@@ -93,9 +93,7 @@ cd ~/team1-imageboard-front
 #   npm run build
 #   ((try_build++))
 # done
-npm cache clean
 npm install
-npm update
 npm run build
 echo "*** team1-imageboard-front/build/ ***"
 cd build/
