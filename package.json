@@ -25,6 +25,7 @@
     "redux-saga": "^1.1.3",
     "web-vitals": "^2.1.4"
   },
+  "homepage":".",
   "scripts": {
     "start": "env-cmd -f .env react-scripts start",
     "build": "env-cmd -f .env react-scripts build",
