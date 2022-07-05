@@ -35,4 +35,4 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           script: |
             whoami
-            ./team1-imageboard-front/bin/setup.sh ${{ secretes.SERVER_URL }}
+            ./team1-imageboard-front/bin/setup.sh ${{ secrets.SERVER_URL }}
