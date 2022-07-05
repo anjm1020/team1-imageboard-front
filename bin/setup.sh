@@ -57,6 +57,7 @@ echo ===========================================
 echo 5. React env configuration
 echo ===========================================
 cd ~/team1-imageboard-front/
+[ -f .env ] && rm .env
 sudo echo REACT_APP_HTTP_URL=$1 >> .env
 echo *** team1-imageboard-front/.env ***
 sudo cat .env
