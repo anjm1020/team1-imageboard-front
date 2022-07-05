@@ -69,7 +69,7 @@ echo 6. Build
 echo ===========================================
 cd ~/team1-imageboard-front
 [ -d build ] && rm -rf build
-while [[ !( -d build/) || !( -f build/index.html) ]]
+while [[ !$( -d build/) || !$( -f build/index.html) ]]
 do
   [ -d build ] && rm -rf build
   npm install
