@@ -3,16 +3,16 @@
 # @ param = api_server_url
 
 
-echo ===========================================
-echo 1. Install Dependency
-echo ===========================================
+echo "==========================================="
+echo "1. Install Dependency"
+echo "==========================================="
 sudo apt-get update
 sudo apt-get install nginx git npm -y
 
 
-echo ===========================================
-echo 2. Node Update
-echo ===========================================
+echo "==========================================="
+echo "2. Node Update"
+echo "==========================================="
 if [ -d ~/.nvm ]
   then
     echo "### nvm is already installed ###"
@@ -24,13 +24,13 @@ if [ -d ~/.nvm ]
   }
 fi
 nvm install v16
-echo ***  Node Version ***
+echo "***  Node Version ***"
 node --version
 
 
-echo ===========================================
-echo 3. Repository check, Git pull
-echo ===========================================
+echo "==========================================="
+echo "3. Repository check, Git pull"
+echo "==========================================="
 cd ~
 [ -d team1-imageboard-front ] || git clone https://github.com/BiBimBapXOpenStack/team1-imageboard-front.git 
 git config --global user.email anjm1020@gmail.com
@@ -42,9 +42,9 @@ git reset --hard origin/develop
 git pull origin develop
 
 
-echo ===========================================
-echo 4. Nginx Configuration
-echo ===========================================
+echo "==========================================="
+echo "4. Nginx Configuration"
+echo "==========================================="
 [ -f ~/../../etc/nginx/sites-available/default ] && sudo rm ~/../../etc/nginx/sites-available/default
 [ -f ~/../../etc/nginx/sites-enabled/default ] && sudo rm ~/../../etc/nginx/sites-enabled/default
 cd ~/team1-imageboard-front/bin/conf;
@@ -60,9 +60,9 @@ echo "*** sites-enabled/imageboard.conf ***"
 sudo cat ~/../../etc/nginx/sites-enabled/imageboard.conf
 
 
-echo ===========================================
-echo 5. React env configuration
-echo ===========================================
+echo "==========================================="
+echo "5. React env configuration"
+echo "==========================================="
 cd ~/team1-imageboard-front/
 [ -f .env ] && rm .env
 sudo echo REACT_APP_HTTP_URL=$1 >> .env
@@ -70,9 +70,9 @@ echo "*** team1-imageboard-front/.env ***"
 sudo cat .env
 
 
-echo ===========================================
-echo 6. Build
-echo ===========================================
+echo "==========================================="
+echo "6. Build"
+echo "==========================================="
 cd ~/team1-imageboard-front
 [ -d build ] && rm -rf build
 try_build=0
@@ -93,7 +93,7 @@ cd build/
 ls
 
 
-echo ===========================================
-echo 7. Nginx restart
-echo ===========================================
+echo "==========================================="
+echo "7. Nginx restart"
+echo "==========================================="
 sudo systemctl restart nginx
