@@ -67,7 +67,7 @@ cd ~/team1-imageboard-front
 npm install
 npm run build
 echo === team1-imageboard-front/build/ ===
-cd /build
+cd build/
 ls
 
 
