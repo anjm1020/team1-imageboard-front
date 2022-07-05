@@ -30,7 +30,7 @@ cd ~
 git config --global user.email anjm1020@gmail.com
 git config --global user.name jaemin
 cd ~/team1-imageboard-front
-sudo rm -rf ./.git/index.lock
+rm -rf .git/index.lock
 git fetch --all
 git reset --hard origin/develop
 git pull origin develop
@@ -68,6 +68,7 @@ echo ===========================================
 echo 6. Build
 echo ===========================================
 cd ~/team1-imageboard-front
+[ -d build ] && rm -rf build
 while [[ !( -d build/) || !( -f build/index.html) ]]
 do
   [ -d build ] && rm -rf build
