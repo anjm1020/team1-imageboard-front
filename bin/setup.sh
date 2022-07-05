@@ -30,6 +30,7 @@ cd ~
 git config --global user.email anjm1020@gmail.com
 git config --global user.name jaemin
 cd ~/team1-imageboard-front
+sudo rm -rf ./.git/index.lock
 git fetch --all
 git reset --hard origin/develop
 git pull origin develop
