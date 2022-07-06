@@ -93,6 +93,9 @@ cd ~/team1-imageboard-front
 #   npm run build
 #   ((try_build++))
 # done
+npm cache clean --force
+[ -d node_modules ] && rm -rf node_modules
+[ -f package-lock.json] && rm -rf package-lock.json
 npm install
 npm run build
 echo "*** team1-imageboard-front/build/ ***"
