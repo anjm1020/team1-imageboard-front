@@ -79,24 +79,13 @@ echo "6. Build"
 echo "==========================================="
 cd ~/team1-imageboard-front
 [ -d build ] && rm -rf build
-# try_build=0
-# while :
-# do
-#   [ $try_build -eq 5 ] && {
-#     echo "### Error : Build Error ###"
-#     exit 1
-#   }
-#   [ -f build/index.html ] && break
-#   [ -d build ] && rm -rf build
-#   [ -d node_modules ] && rm -rf node_modules
-#   npm install
-#   npm run build
-#   ((try_build++))
-# done
+echo "*** log with : npm cache ***"
 npm cache clean --force
 [ -d node_modules ] && rm -rf node_modules
-[ -f package-lock.json] && rm -rf package-lock.json
+[ -f package-lock.json ] && rm -rf package-lock.json
+echo "*** log with : npm install ***"
 npm install
+echo "*** log with : npm build ***"
 npm run build
 echo "*** team1-imageboard-front/build/ ***"
 cd build/
