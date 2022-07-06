@@ -80,7 +80,6 @@ echo "==========================================="
 cd ~/team1-imageboard-front
 [ -d build ] && rm -rf build
 echo "*** log with : npm cache ***"
-npm cache clean --force
 [ -d node_modules ] && rm -rf node_modules
 [ -f package-lock.json ] && rm -rf package-lock.json
 echo "*** log with : npm install ***"
