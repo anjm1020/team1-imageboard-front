@@ -54,10 +54,8 @@ sudo cat .env
 echo "==========================================="
 echo "4. Build"
 echo "==========================================="
-node --version
 cd ~/team1-imageboard-front
 [ -d build ] && rm -rf build
-[ -d node_modules ] && rm -rf node_modules
 [ -f package-lock.json ] && rm -rf package-lock.json
 echo "*** log with : npm install ***"
 npm install
