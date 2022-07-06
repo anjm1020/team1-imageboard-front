@@ -5,6 +5,7 @@
 echo "==========================================="
 echo "0. Stop nginx"
 echo "==========================================="
+node --version
 sudo systemctl stop nginx
 
 
@@ -53,6 +54,7 @@ sudo cat .env
 echo "==========================================="
 echo "4. Build"
 echo "==========================================="
+node --version
 cd ~/team1-imageboard-front
 [ -d build ] && rm -rf build
 [ -d node_modules ] && rm -rf node_modules
