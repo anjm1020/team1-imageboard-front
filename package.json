@@ -1,6 +1,7 @@
 {
   "name": "team1-imageboard-front",
   "version": "0.1.0",
+  "homepage":".",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.4",
@@ -23,7 +24,6 @@
     "redux-saga": "^1.1.3",
     "web-vitals": "^2.1.4"
   },
-  "homepage":".",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
