@@ -1,0 +1,81 @@
+
+name: CHECK_SUCCESS
+
+on:
+  workflow_run:
+    workflows: [CI_DEV]
+    types: [completed]
+
+jobs:
+  on-success:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up JDK 11
+        uses: actions/setup-java@v2
+        with:
+          java-version: '11'
+          distribution: 'adopt'
+
+      - name: action-slack
+        uses: 8398a7/action-slack@v2
+        with:
+          status: custom
+          payload: |
+            {
+              text: "deploy successed!",
+              attachments: [{
+                "author_name": "8398a7@action-slack",
+                fallback: 'fallback',
+                color: 'good',
+                title: 'CI Result',
+                text: 'Successed',
+                fields: [{
+                  title: 'Error Msg',
+                  value: 'null',
+                  short: true
+                }],
+                actions: [{
+                }]
+              }]
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }} # required
+        if: always()
+  on-failure:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'failure' }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up JDK 11
+        uses: actions/setup-java@v2
+        with:
+          java-version: '11'
+          distribution: 'adopt'
+
+      - name: action-slack
+        uses: 8398a7/action-slack@v2
+        with:
+          status: custom
+          payload: |
+            {
+              text: "deploy failed!",
+              attachments: [{
+                "author_name": "check_success",
+                fallback: 'fallback',
+                color: 'bad',
+                title: 'CI Result',
+                text: 'Failed',
+                fields: [{
+                  title: 'Error Msg',
+                  value: 'Error Message'.toLowerCase(),
+                  short: false
+                }],
+                actions: [{
+                }]
+              }]
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }} # required
+        if: always() 
